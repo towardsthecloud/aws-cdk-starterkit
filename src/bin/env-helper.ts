@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import type { awscdk } from 'projen';
 
 /** Represents the possible deployment environments. */

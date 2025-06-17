@@ -32,7 +32,6 @@ jspm_packages/
 .yarn-integrity
 __pycache__
 __pycache__/
-!.eslintrc.js
 .cache
 .coverage.*
 .coverage

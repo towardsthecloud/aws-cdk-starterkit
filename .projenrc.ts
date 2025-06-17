@@ -163,7 +163,6 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   gitignore: [
     '__pycache__',
     '__pycache__/',
-    '!.eslintrc.js',
     '.cache',
     '.coverage.*',
     '.coverage',

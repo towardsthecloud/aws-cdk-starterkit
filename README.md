@@ -3,7 +3,7 @@
 # AWS CDK Starterkit
 
 [![Build Status](https://github.com/towardsthecloud/aws-cdk-starterkit/actions/workflows/build.yml/badge.svg)](https://github.com/towardsthecloud/aws-cdk-starterkit/actions/workflows/build.yml)
-[![ESLint Code Formatting](https://img.shields.io/badge/code_style-eslint-brightgreen.svg)](https://eslint.org)
+[![Biome Code Formatting](https://img.shields.io/badge/code_style-biome-brightgreen.svg)](https://biomejs.dev)
 [![Latest release](https://img.shields.io/github/release/dannysteenman/aws-cdk-starterkit.svg)](https://github.com/towardsthecloud/aws-cdk-starterkit/releases)
 
 Welcome to the starting line of your next AWS CDK project. This repository is crafted to supercharge your project's setup with AWS CDK TypeScript, projen, and GitHub actions, ensuring a smooth and efficient deployment to your AWS account.
@@ -66,7 +66,7 @@ Welcome to the starting line of your next AWS CDK project. This repository is cr
 - 🏗️ **Project structure**: The [project is structured](#project-structure) in a clean and intuitive way that allows you to easily manage your constructs and stacks for this CDK App.
 - 🛡️ **Seamless Security**: Leverage OpenID Connect for secure AWS deployments. Authenticate your GitHub Actions workflows directly with AWS, eliminating the need for stored credentials or long-lived secrets.
 - 🧹 **Preconfigured TypeScript Excellence**: Hit the ground running with pre-set compiler options in [tsconfig.json](./tsconfig.json), ensuring your code is clean, efficient, and error-free from the start.
-- 📏 **Best Practice Linting**: Adopt coding best practices effortlessly with a pre-configured ESLint setup [.eslintrc.json](./.eslintrc.json), maintaining high code quality and consistency.
+- 📏 **Best Practice Linting & Formatting**: Adopt coding best practices effortlessly with a pre-configured Biome setup [biome.jsonc](./biome.jsonc), maintaining high code quality and consistency.
 - 💻 **Branch-based Deployments**: Deploy multiple CDK stacks to the same AWS environments based on the Git branch. This enables you to easily test changes when multiple developers work on the same code base.
 - 📦 **Automated Dependency Management**: Dependabot creates grouped PRs, with auto-approval for passing checks using `hmarr/auto-approve-action@v4`, streamlining updates while maintaining project stability.
 
@@ -119,7 +119,7 @@ Congratulations 🎉! You've successfully set up your project.
 
 ## Project Structure
 
-When working on smaller projects using infrastructure as code, where you deploy single applications that don’t demand extensive maintenance or collaboration from multiple teams, it’s recommended to structure your AWS CDK project in a way that enables you to deploy both the application and infrastructure using a single stack.
+When working on smaller projects using infrastructure as code, where you deploy single applications that don't demand extensive maintenance or collaboration from multiple teams, it's recommended to structure your AWS CDK project in a way that enables you to deploy both the application and infrastructure using a single stack.
 
 However, as projects evolve to encompass multiple microservices and a variety of stateful resources (e.g., databases), the complexity inherently increases.
 
@@ -127,7 +127,7 @@ In such cases, adopting a more sophisticated AWS CDK project organization become
 
 To cater to these advanced needs, your AWS CDK project should adopt a modular structure. This is where the **AWS CDK starterkit** shines ✨.
 
-Here’s a closer look at how this structure enhances maintainability and scalability:
+Here's a closer look at how this structure enhances maintainability and scalability:
 
 ```bash
 .
