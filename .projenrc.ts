@@ -2,7 +2,7 @@ import { awscdk } from 'projen';
 import { DependabotScheduleInterval } from 'projen/lib/github';
 import { NodePackageManager } from 'projen/lib/javascript';
 import { createCdkDeploymentWorkflows } from './src/bin/cicd-helper';
-import { Environment, EnvironmentConfig, addCdkActionTask } from './src/bin/env-helper';
+import { type Environment, type EnvironmentConfig, addCdkActionTask } from './src/bin/env-helper';
 
 // Set the minimum node version for AWS CDK and the GitHub actions workflow
 const nodeVersion = '20.18.1';
@@ -29,31 +29,95 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   authorOrganization: true,
   name: 'aws-cdk-starterkit',
   description: 'Create and deploy an AWS CDK app on your AWS account in less than 5 minutes using GitHub actions!',
-  cdkCliVersion: '2.1016.0', // Find the latest CDK version here: https://www.npmjs.com/package/aws-cdk
-  cdkVersion: '2.197.0', // Find the latest CDK version here: https://www.npmjs.com/package/aws-cdk-lib
+  cdkCliVersion: '2.1018.1', // Find the latest CDK version here: https://www.npmjs.com/package/aws-cdk
+  cdkVersion: '2.201.0', // Find the latest CDK version here: https://www.npmjs.com/package/aws-cdk-lib
   cdkVersionPinning: true,
   defaultReleaseBranch: 'main',
   packageManager: NodePackageManager.NPM,
   minNodeVersion: nodeVersion,
-  projenVersion: '0.92.6', // Find the latest projen version here: https://www.npmjs.com/package/projen
+  projenVersion: '0.92.11', // Find the latest projen version here: https://www.npmjs.com/package/projen
   projenrcTs: true,
   release: true,
   deps: ['cloudstructs'] /* Runtime dependencies of this module. */,
-  prettier: true,
-  prettierOptions: {
-    settings: {
-      jsxSingleQuote: true,
-      singleQuote: true,
-      printWidth: 120,
+  biome: true,
+  biomeOptions: {
+    biomeConfig: {
+      files: {
+        ignoreUnknown: true,
+      },
+      formatter: {
+        enabled: true,
+        useEditorconfig: true,
+        formatWithErrors: false,
+        indentStyle: 'space',
+        ignore: ['coverage', 'dist', 'node_modules'],
+      },
+      organizeImports: {
+        enabled: true,
+        ignore: ['coverage', 'dist', 'node_modules'],
+      },
+      linter: {
+        enabled: true,
+        rules: {
+          recommended: true,
+          complexity: {
+            useArrowFunction: 'off',
+            useLiteralKeys: 'error',
+          },
+          style: {
+            useBlockStatements: 'off',
+            useImportType: 'off',
+          },
+        },
+        ignore: [
+          'coverage',
+          'dist',
+          'node_modules',
+          '*.js',
+          '*.d.ts',
+          'node_modules/',
+          '*.generated.ts',
+          '!.projenrc.ts',
+          '!projenrc/**/*.ts',
+          '**/*.js',
+          '**/*.d.ts',
+          '**/node_modules/',
+          '**/*.generated.ts',
+          '**/coverage',
+        ],
+      },
+      javascript: {
+        formatter: {
+          jsxQuoteStyle: 'single',
+          trailingCommas: 'all',
+          semicolons: 'always',
+          enabled: true,
+          indentStyle: 'space',
+          lineWidth: 120,
+          quoteStyle: 'single',
+        },
+      },
+      json: {
+        parser: {
+          allowComments: true,
+        },
+        formatter: {
+          enabled: true,
+          indentStyle: 'space',
+          lineWidth: 120,
+        },
+      },
+      overrides: [
+        {
+          include: ['.projenrc.ts'],
+          linter: {
+            rules: {},
+          },
+        },
+      ],
     },
   },
-  eslintOptions: {
-    prettier: true,
-    dirs: ['src', 'test'],
-    commandOptions: {
-      fix: true,
-    },
-  },
+  eslint: false,
   autoApproveOptions: {
     allowedUsernames: ['dependabot', 'dependabot[bot]', 'github-bot', 'github-actions[bot]'],
     /**

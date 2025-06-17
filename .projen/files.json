@@ -1,6 +1,5 @@
 {
   "files": [
-    ".eslintrc.json",
     ".gitattributes",
     ".github/dependabot.yml",
     ".github/pull_request_template.md",
@@ -15,11 +14,10 @@
     ".gitignore",
     ".mergify.yml",
     ".npmignore",
-    ".prettierignore",
-    ".prettierrc.json",
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",
+    "biome.jsonc",
     "cdk.json",
     "LICENSE",
     "tsconfig.dev.json",

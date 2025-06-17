@@ -70,15 +70,13 @@ junit.xml
 !/.github/workflows/release.yml
 !/.github/dependabot.yml
 !/.github/pull_request_template.md
-!/.prettierignore
-!/.prettierrc.json
+!/biome.jsonc
 !/test/
 !/tsconfig.json
 !/tsconfig.dev.json
 !/src/
 /lib
 /dist/
-!/.eslintrc.json
 /assets/
 !/cdk.json
 /cdk.out/

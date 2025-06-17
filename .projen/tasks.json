@@ -1,5 +1,14 @@
 {
   "tasks": {
+    "biome": {
+      "name": "biome",
+      "description": "Runs Biome against the codebase",
+      "steps": [
+        {
+          "exec": "biome check --write $@ src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
     "branch:test:deploy": {
       "name": "branch:test:deploy",
       "description": "Deploy the stacks on the TEST account",
@@ -196,19 +205,6 @@
         }
       ]
     },
-    "eslint": {
-      "name": "eslint",
-      "description": "Runs eslint against the codebase",
-      "env": {
-        "ESLINT_USE_FLAT_CONFIG": "false"
-      },
-      "steps": [
-        {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
-          "receiveArgs": true
-        }
-      ]
-    },
     "githubbranch:test:destroy": {
       "name": "githubbranch:test:destroy",
       "description": "Destroy the stacks on the TEST account",
@@ -378,7 +374,7 @@
           "receiveArgs": true
         },
         {
-          "spawn": "eslint"
+          "spawn": "biome"
         }
       ]
     },
