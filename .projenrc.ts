@@ -195,6 +195,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   ],
 });
 
+// Reset the biome task to use the correct command for linting and formatting the codebase
+const tasksFile = project.tryFindObjectFile('.projen/tasks.json');
+tasksFile?.addOverride('tasks.biome.steps.0.exec', 'biome check --write $@ src test .projenrc.ts');
+
 // Configure the environments and their corresponding AWS account IDs
 const environmentConfigs: Partial<Record<Environment, EnvironmentConfig>> = {
   test: { accountId: '987654321012', enableBranchDeploy: true },
